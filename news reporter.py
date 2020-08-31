@@ -1,4 +1,4 @@
-import json, requests, newsapi
+import json, newsapi
 
 def speak(str):
 	  from win32com.client import Dispatch
