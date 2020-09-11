@@ -10,7 +10,7 @@ if __name__ == "__main__":
 	speak("Where do you live? ")
 	place = input("Where do you live? ")
 
-	url = f"http://api.weatherapi.com/v1/current.json?key=2f081a6878a747a5be135553200709&q={place.capitalize()}"
+	url = f"http://api.weatherapi.com/v1/current.json?key="KEY HERE"&q={place.capitalize()}"
 
 	r = requests.get(url).text
 	a = json.loads(r)
