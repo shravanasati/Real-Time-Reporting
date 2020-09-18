@@ -5,10 +5,6 @@
 # add book
 # return book
 
-# HarryLibrary = Library(listofbooks, library_name)
-# dictionary (books-nameofperson)
-# create a main function and run an infinite while loop asking users for their input
-
 class Library:
     def __init__(self, booklist, libname, lenders, donors):
         self.booklist = booklist
@@ -24,7 +20,7 @@ class Library:
         if bookname in self.booklist:
             self.booklist.remove(bookname)
             self.lenders.update({name.lower():bookname})
-            print("***Game lended successfully!! Return it within a week :) ***")
+            print("***Book lended successfully!! Return it within a week :) ***")
         else:
             print("No such game available in the directory!")
 
@@ -32,26 +28,26 @@ class Library:
         if name.lower() in self.lenders.keys():
             self.booklist.append(self.lenders[name.lower()])
             self.lenders.pop(name.lower())
-            print("***Game returned successfully!***")
+            print("***Book returned successfully!***")
         else:
-            print("Put proper name!")
+            print("Input proper name!")
 
     def donate(self, kindname, newbook):
         print("Thanks", kindname, "a lot!!!")
         self.booklist.append(newbook)
         self.donors.update({kindname.capitalize():newbook})
     
-Shravan_Lib = Library(["COD Mobile", "PUBG Mobile", "Free Fire", "Hopeless"], "Gamers", {}, {})
+Shravan_Lib = Library(["Factfulness", "The Code of Extraordinary Mind", "The 5AM Club", "Rich Dad Poor Dad"], "Central Library", {}, {})
 
 if __name__ == "__main__":
     while True:
         print("This is the", Shravan_Lib.libname, "library!")
-        op = int(input("What would you like to do:\n1. See the game list\n2. Rent a game\n3. Donate a game\n4. Return a game\n(1/2/3/4) "))
+        op = int(input("What would you like to do:\n1. See the book list\n2. Rent a book\n3. Donate a book\n4. Return a book\n(1/2/3/4) "))
 
         if op==1:
             print(Shravan_Lib.books)
             if len(Shravan_Lib.donors)>0:
-                print(f"Some kind men who donated us games: {Shravan_Lib.donors}")
+                print(f"Some kind men who donated us books: {Shravan_Lib.donors}")
             else:
                 pass      
 
@@ -62,12 +58,12 @@ if __name__ == "__main__":
             else:
                 pass
             name = input("Your name: ")
-            book = input("Gamename: ")
+            book = input("Book name: ")
             Shravan_Lib.lend(book, name)
 
         elif op==3:
             name = input("Your name: ")
-            book = input("Gamename: ")
+            book = input("Book name: ")
             Shravan_Lib.donate(name, book)
         
         elif op==4:
@@ -76,7 +72,7 @@ if __name__ == "__main__":
                 name = input("Your name: ")
                 Shravan_Lib.returnb(name)
             else:
-                print("No game borrowers currently in the system!")
+                print("No borrowers currently in the system!")
 
         else:
-            print("yOU aRE LOL!")
+            print("Invalid input!")
