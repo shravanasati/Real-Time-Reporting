@@ -82,7 +82,7 @@ def zoom_meeting(subject_id, password):
     
 def screen_recording():
     """automate screen recording"""
-    screen_recorder_target = r"C:\Program Files (x86)\Icecream Screen Recorder\recorder.exe"
+    screen_recorder_target = r"SCREEN RECORDER PATH HERE"
     a.speak("Opening ice cream screen recorder")
     os.startfile(screen_recorder_target)
     time.sleep(10)
@@ -94,15 +94,9 @@ def screen_recording():
     p.typewrite('687', 2)
     a.speak("You're ready to record, just press F7 to continue. Say stop screen recording to stop it.")
 
-def cwh_course(playlist_url):
-    """opens firefox and then opens any cwh course"""
-    os.startfile(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe")
-    time.sleep(5)
-    p.typewrite(playlist_url)
-    p.press('enter')
-
+    
 def access_web(url):
-    os.startfile(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe")
+    os.startfile(r"FIREFOX PATH HERE")
     time.sleep(3)
     p.typewrite(url)
     p.press('enter')
@@ -125,15 +119,15 @@ if __name__ == "__main__":
                 print(result)
                 a.speak(result)
             except ConnectionError as e:
-                a.speak("Check your network")
+                a.speak("Please check your network")
             except Exception as e:
                 a.speak(e)
 
-        elif 'quit jarvis' in query or 'get lost' in query or 'f***' in query or 'shut' in query or 'stop listening' in query:
+        elif 'quit' in query or 'get lost' in query or 'f***' in query or 'shut' in query or 'stop listening' in query:
             a.speak("Thanks for visiting sir!")
             quit()
 
-        elif 'who you' in query:
+        elif 'who are you' in query:
             a.speak("Hello sir, I am Jarvis, an intelligent AI made by Shravan with python.")
 
         elif 'how are you' in query:
@@ -145,9 +139,6 @@ if __name__ == "__main__":
 
         elif 'open youtube' in query:
             wb.open('youtube.com')
-
-        elif 'open google' in query:
-            wb.open('google.com')
 
         elif 'open stack overflow' in query:
             wb.open('stackoverflow.com')
@@ -161,13 +152,13 @@ if __name__ == "__main__":
 
 
         elif 'open github' in query:
-            access_web('https://github.com/Shravan-1908/First_Repo')
+            access_web('https://github.com/Shravan-1908/First_Repo') #YOU CAN PROVIDE YOUR GITHUB LINK HERE
 
         elif 'open instagram' in query:
             access_web('https://www.instagram.com/')
         
         elif 'play music' in query or 'music' in query:
-            music_path = r"C:\Users\Lenovo\Documents\Music and Projects'\EDM Music\Favorites"
+            music_path = r"MUSIC DIRECTORY HERE"
             songs = os.listdir(music_path)
             a.speak("Playing songs from your favorites...")
             for i in songs:
@@ -210,25 +201,20 @@ if __name__ == "__main__":
                 a.speak(e)
 
 
-        elif 'open code' in query or 'i code in python' in query:
-            code_target = r"C:\Users\Lenovo\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+        elif 'open code' in query:
+            code_target = r"VSCODE PATH HERE"
             a.speak("Opening Visual Studio Code...")
             os.startfile(code_target)
 
         elif 'open sublime' in query or 'quick code' in query:
-            sublime_target = r"C:\Program Files\Sublime Text 3\sublime_text.exe"
+            sublime_target = r"SUBLIME TEXT PATH HERE"
             a.speak("Opening Sublime Text...")
             os.startfile(sublime_target)
 
         elif 'open java ide' in query or 'i code in java' in query:
-            intellij_target = r"C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2\bin\idea64.exe"
+            intellij_target = r"INTELLIJ IDEA PATH HERE"
             a.speak("Opening IntelliJ IDEA...")
             os.startfile(intellij_target)
-
-        elif 'open scratch' in query:
-            a.speak("Opening scratch...")
-            scratch_target = r"C:\Program Files (x86)\Scratch 2\Scratch 2.exe"
-            os.startfile(scratch_target)
 
         elif 'open spotify' in query:
             a.speak("Opening spotify...")
@@ -237,28 +223,24 @@ if __name__ == "__main__":
             p.press('enter')
 
         elif 'open zoom' in query or 'class time' in query or 'meeting time' in query:
-            zoom_target = r"C:\Users\Lenovo\AppData\Roaming\Zoom\bin\Zoom.exe"
-            sub_pass = {"7207522193":"1357", "3480809136":"1010", "4529209557":"12030411"}
+            zoom_target = r"ZOOM PATH HERE"
             a.speak("Any particular class you want me to fill info of?")
             response = command().lower()
             if 'no' in response:
                 a.speak("Alright! Opening zoom...")
                 os.startfile(zoom_target)
             elif 'maths' in response or 'biology' in response:
-                a.speak("Alright.. I hope he teaches and doesnt send photos on whatsapp!")
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("7207522193", "1357")
+                zoom_meeting("MEETING ID", "PASSWORD")
             elif 'hindi' in response:
-                a.speak("Alright.. I hope he wont let you write much today!!")
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("3480809136", "1010")
+                zoom_meeting("MEETING ID", "PASSWORD")
             elif 'social science' in response or 'chemistry' in response:
-                a.speak("Alright.. Dont forget to pay attention..!")
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("4529209557", "12030411")
+                zoom_meeting("MEETING ID", "PASSWORD")
             a.speak("If you want to have the meeting controls, just say meeting controls")
             zoom_counter += 1 
 
@@ -286,12 +268,12 @@ if __name__ == "__main__":
             p.hotkey('winleft', 'e')
 
         elif 'open chrome' in query:
-            chrome_target = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+            chrome_target = r"CHROME PATH HERE"
             a.speak("Opening Google Chrome....")
             os.startfile(chrome_target)
 
         elif 'open firefox' in query:
-            firefox_target = r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+            firefox_target = r"FIREFOX PATH HERE"
             a.speak("Opening Mozilla Firefox...")
             os.startfile(firefox_target)
 
@@ -332,19 +314,6 @@ if __name__ == "__main__":
             response = command().lower()
             a.speak(response)
 
-
-        elif 'learn python' in query:
-            a.speak("Opening Code With Harry's python playlist...")
-            cwh_course("https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME")
-
-        elif 'learn java' in query:
-            a.speak("Opening Code With Harry's java playlist...")
-            cwh_course("https://www.youtube.com/playlist?list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q")
-            
-        elif 'learn graphical user interface' in query:
-            a.speak("Opening Code With Harry's Python GUI with Tkinter playlist...")
-            cwh_course("https://www.youtube.com/playlist?list=PLu0W_9lII9ajLcqRcj4PoEihkukF_OTzA")
-
         elif 'send email' in query:
             a.speak("Alright to whom? Type the email address")
             to = input("Email address: ")
@@ -356,7 +325,7 @@ if __name__ == "__main__":
 
         elif 'check emails' in query:
             a.speak("Taking you to the yahoo mail")
-            access_web("https://mail.yahoo.com/d/folders/1?.intl=in&.lang=en-IN&.partner=none&.src=fp&reason=timezone-mismatch&counter=1")
+            access_web("EMAIL URL HERE")
 
         elif 'joke' in query:
             a.speak("Fetching one...")
@@ -383,7 +352,6 @@ if __name__ == "__main__":
             if (t_func() - init) > (minutes * 60):
                 a.speak("Time up!")
                 print("Time up!")
-                os.startfile(r"C:\Users\Lenovo\Documents\Python Codes\piano result.mp3")
                 timer_counter += 1
 
         elif 'start stopwatch' in query:
