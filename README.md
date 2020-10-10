@@ -8,7 +8,7 @@ Some advanced level python projects here!
 
 4. Bike Rental System - A full-fledged bike rental system implemented in Python using object oriented programming.
 
-5. Typing speed counter - A python program which can calculate the approx typing spped of a user in words per minute(WPM) and also tells the numbver of mistakes done by the user while giving this test.
+5. Typing speed counter - A python program which can calculate the approx typing spped of a user in words per minute(WPM) and also tells the numbver of mistakes done by the user while giving this test. Find the typing_speed_phrases.txt to pick the phrases randomly and typing_speed_history.txt for history of all the typing speed tests. 
 
 6. Spammer - A python bot which helps you accomplish your spamming goals.
 
