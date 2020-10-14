@@ -32,5 +32,5 @@ Once that's done, type the following code:
 pipwin install pyaudio
 ```
 It should work now 
-:simple_smile:
+ :smile:
 
