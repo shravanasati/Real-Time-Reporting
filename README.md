@@ -18,10 +18,12 @@ Some advanced level python projects here!
 
 
 *Modules/Libraries Required:*
-- pyttsx3
-- pyaudio
-- wikipedia
-- pyautogui
+- pyttsx3 --> ```pip install pyttsx3```
+- pyaudio --> ```pip install pyaudio```
+- wikipedia --> ```pip install wikipedia```
+- pyautogui --. --> ```pip install pyautogui```
+- selenium --> ```pip install selenium```
+- speech_recognition --> ```pip install speech_recognition```
 
 If you're getting error regarding pyaudio, open the cmd and type the following code:
 ```
