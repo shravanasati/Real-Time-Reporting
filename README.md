@@ -24,6 +24,7 @@ Some advanced level python projects here!
 - pyautogui --> ```pip install pyautogui```
 - selenium --> ```pip install selenium```
 - speech_recognition --> ```pip install speech_recognition```
+You will also need to download driver for the Firefox browser(Or any other driver for the respective browser). Download all drivers from here: https://selenium-python.readthedocs.io/installation.html
 
 If you're getting error regarding pyaudio, open the cmd and type the following code:
 ```
