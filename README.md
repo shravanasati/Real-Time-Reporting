@@ -21,7 +21,7 @@ Some advanced level python projects here!
 - pyttsx3 --> ```pip install pyttsx3```
 - pyaudio --> ```pip install pyaudio```
 - wikipedia --> ```pip install wikipedia```
-- pyautogui --. --> ```pip install pyautogui```
+- pyautogui --> ```pip install pyautogui```
 - selenium --> ```pip install selenium```
 - speech_recognition --> ```pip install speech_recognition```
 
