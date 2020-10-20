@@ -1,12 +1,15 @@
-from datetime import time
-import pyttsx3, datetime, speech_recognition as sr, wikipedia, webbrowser as wb, os, random, json, requests, pyautogui as p, time
-from time import time as t_func
+import pyttsx3, datetime, speech_recognition as sr, wikipedia, os, random, json, requests, pyautogui as p, time
+from selenium import webdriver
+
+# own modules
 from news_reporter import general_news, tech_news
-p.FAILSAFE = True
 from weather_monitor import weather
-from Snakewatergun import snake_water_gun
-from Guess_number import guess_number
+from snake_water_gun import snake_water_gun
+from guess_number import guess_number
 from email_sender import send_mail
+from spammer import Spammer
+
+p.FAILSAFE = True
 
 def male_voice(self, string):
     converter = pyttsx3.init() 
@@ -17,7 +20,7 @@ def male_voice(self, string):
 
 
 def female_voice(self, string):
-    voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+    voice_id = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
     converter = pyttsx3.init() 
     converter.setProperty('rate', 190) 
     converter.setProperty('volume', 0.8)
@@ -49,19 +52,19 @@ def wish():
         a.speak("Good evening sir!")
     a.speak("How can I help you?")
 
+
 def command():
     """taking user mic input as a command"""
-
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
         r.pause_threshold = 0.8
         audio = r.listen(source)
+
     try:
         print("Recognizing...")    
         query = r.recognize_google(audio, language='en-in') 
-        print(f"User said: {query}\n")  
-
+        print(f"User said: {query}\n")
     except Exception as e:  
         print("Say that again please...") 
         return "None"
@@ -69,7 +72,7 @@ def command():
 
 def zoom_meeting(subject_id, password):
     """func which takes subject id and password as an argument and, basically zoom automation"""
-    time.sleep(5)
+    time.sleep(3)
     p.click(530, 281)
     time.sleep(2)
     p.click(651, 323)
@@ -82,7 +85,7 @@ def zoom_meeting(subject_id, password):
     
 def screen_recording():
     """automate screen recording"""
-    screen_recorder_target = r"SCREEN RECORDER PATH HERE"
+    screen_recorder_target = r"ICECREAM SCREEN REORDER PATH HERE"
     a.speak("Opening ice cream screen recorder")
     os.startfile(screen_recorder_target)
     time.sleep(10)
@@ -94,12 +97,16 @@ def screen_recording():
     p.typewrite('687', 2)
     a.speak("You're ready to record, just press F7 to continue. Say stop screen recording to stop it.")
 
-    
+
 def access_web(url):
-    os.startfile(r"FIREFOX PATH HERE")
-    time.sleep(3)
-    p.typewrite(url)
-    p.press('enter')
+    wb = webdriver.Firefox(executable_path = r"C:\Users\Lenovo\Downloads\Programs\geckodriver.exe")
+    try:
+        wb.get(url)
+    except Exception as e:
+        print(e)
+        speak("Invalid url")
+
+
 
 if __name__ == "__main__":
     wish()
@@ -114,20 +121,20 @@ if __name__ == "__main__":
             try:
                 a.speak("Searching through the wikipedia for your query...Hang on..")
                 query = query.replace('wikipedia', "")
-                result = wikipedia.summary(query, sentences = 2)
+                result = wikipedia.summary(query.strip(), sentences = 2)
                 a.speak("According to wikipedia...")
                 print(result)
                 a.speak(result)
             except ConnectionError as e:
-                a.speak("Please check your network")
+                a.speak("Check your network")
             except Exception as e:
                 a.speak(e)
 
-        elif 'quit' in query or 'get lost' in query or 'f***' in query or 'shut' in query or 'stop listening' in query:
+        elif 'quit jarvis' in query or 'get lost' in query or 'f***' in query or 'shut' in query or 'stop listening' in query:
             a.speak("Thanks for visiting sir!")
             quit()
 
-        elif 'who are you' in query:
+        elif 'who you' in query:
             a.speak("Hello sir, I am Jarvis, an intelligent AI made by Shravan with python.")
 
         elif 'how are you' in query:
@@ -135,27 +142,37 @@ if __name__ == "__main__":
             response = command().lower()
             if 'fine' in response or 'alright' in response:
                 a.speak("Glad to hear that!")
-
+            else:
+                a.speak("Hmm.")
 
         elif 'open youtube' in query:
-            wb.open('youtube.com')
+            a.speak("Opening YouTube...")
+            access_web("https://www.youtube.com")
+
+        elif 'open google' in query:
+            a.speak("Opening google..")
+            access_web('https://www.google.com')
 
         elif 'open stack overflow' in query:
-            wb.open('stackoverflow.com')
+            access_web('https://www.stackoverflow.com')
 
+        # NEEDs IMPROVEMENT HERE
         elif 'google' in query.lower():
             query = query.replace("google", "")
-            wb.open(f'google.com')
+            access_web(f'google.com')
             time.sleep(5)
             p.typewrite(query)
             p.press('enter')
 
 
         elif 'open github' in query:
-            access_web('https://github.com/Shravan-1908/First_Repo') #YOU CAN PROVIDE YOUR GITHUB LINK HERE
+            access_web('https://github.com/Shravan-1908/First_Repo')
 
         elif 'open instagram' in query:
             access_web('https://www.instagram.com/')
+
+        elif 'open discord' in query:
+            access_web('https://discord.com/channels/@me')
         
         elif 'play music' in query or 'music' in query:
             music_path = r"MUSIC DIRECTORY HERE"
@@ -182,15 +199,15 @@ if __name__ == "__main__":
             print(f"The current time is {strTime}")
             a.speak(f"The current time is {strTime}")
 
-
-        elif 'general news' in query:
-            a.speak("Hold up..")
-            general_news(2)
-
         elif 'tech news' in query:
             a.speak("Hold up..")
             tech_news(2)
 
+        elif 'news' in query:
+            a.speak("Hold up..")
+            general_news(2)
+
+        
         elif 'weather' in query:
             try:
                 query = query.replace('weather', "")
@@ -198,23 +215,25 @@ if __name__ == "__main__":
                 weather(query.strip().capitalize())
             except Exception as e:
                 a.speak("Some error occured!")
+                print(e)
                 a.speak(e)
 
 
-        elif 'open code' in query:
-            code_target = r"VSCODE PATH HERE"
+        elif 'open code' in query or 'i code in python' in query:
+            code_target = r"VS CODE PATH HERE"
             a.speak("Opening Visual Studio Code...")
             os.startfile(code_target)
 
         elif 'open sublime' in query or 'quick code' in query:
-            sublime_target = r"SUBLIME TEXT PATH HERE"
+            sublime_target = r"ST3 PATH HERE"
             a.speak("Opening Sublime Text...")
             os.startfile(sublime_target)
 
         elif 'open java ide' in query or 'i code in java' in query:
-            intellij_target = r"INTELLIJ IDEA PATH HERE"
+            intellij_target = r"C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2\bin\idea64.exe"
             a.speak("Opening IntelliJ IDEA...")
             os.startfile(intellij_target)
+
 
         elif 'open spotify' in query:
             a.speak("Opening spotify...")
@@ -222,28 +241,28 @@ if __name__ == "__main__":
             p.typewrite('Spotify')
             p.press('enter')
 
-        elif 'open zoom' in query or 'class time' in query or 'meeting time' in query:
+        elif 'open zoom' in query or 'join a meeting' in query:
             zoom_target = r"ZOOM PATH HERE"
             a.speak("Any particular class you want me to fill info of?")
             response = command().lower()
             if 'no' in response:
                 a.speak("Alright! Opening zoom...")
                 os.startfile(zoom_target)
-            elif 'maths' in response or 'biology' in response:
+            elif 'maths' in response:
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("MEETING ID", "PASSWORD")
+                zoom_meeting("MEETING ID HERE", "PASSWORD HERE")
             elif 'hindi' in response:
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("MEETING ID", "PASSWORD")
-            elif 'social science' in response or 'chemistry' in response:
+                zoom_meeting("MEETING ID HERE", "PASSWORD HERE")
+            elif 'social science' in response:
                 os.startfile(zoom_target)
                 time.sleep(3)
-                zoom_meeting("MEETING ID", "PASSWORD")
+                zoom_meeting("MEETING ID HERE", "PASSWORD HERE")
             a.speak("If you want to have the meeting controls, just say meeting controls")
             zoom_counter += 1 
-
+# YOU CAN ADD MORE SUBJECTS
         elif 'meeting control' in query:
             if zoom_counter < 1:
                 a.speak("You arent in any meeting right now!")
@@ -308,11 +327,31 @@ if __name__ == "__main__":
             a.speak("Launching guess the number game on the console......Dont cheat ")
             guess_number()
 
+        
+        elif 'spam spam' in query:
+            a.speak("Cheat code activated...Initiating spammer...")
+            s = Spammer()
+            s.main()
+
 
         elif 'repeat after me' in query:
             a.speak("Ok I am listening....")
             response = command().lower()
             a.speak(response)
+
+
+        elif 'learn python' in query:
+            a.speak("Opening Code With Harry's python playlist...")
+            access_web("https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME")
+
+        elif 'learn java' in query:
+            a.speak("Opening Code With Harry's java playlist...")
+            access_web("https://www.youtube.com/playlist?list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q")
+            
+        elif 'learn graphical user interface' in query:
+            a.speak("Opening Code With Harry's Python GUI with Tkinter playlist...")
+            access_web("https://www.youtube.com/playlist?list=PLu0W_9lII9ajLcqRcj4PoEihkukF_OTzA")
+
 
         elif 'send email' in query:
             a.speak("Alright to whom? Type the email address")
@@ -323,9 +362,6 @@ if __name__ == "__main__":
             body = command()
             send_mail(to, subject, body)
 
-        elif 'check emails' in query:
-            a.speak("Taking you to the yahoo mail")
-            access_web("EMAIL URL HERE")
 
         elif 'joke' in query:
             a.speak("Fetching one...")
@@ -342,22 +378,23 @@ if __name__ == "__main__":
             if timer_counter % 2 == 0:
                 a.speak("Alright..for how many minutes? ")
                 minutes = int(input("Alright..for how many minutes? "))
-                init = t_func()
+                init = time.time()
                 a.speak(f"Timer initiated for {minutes} minutes!")
                 timer_counter += 1
             else:
                 a.speak(f"One timer is already going on...")
 
         if timer_counter % 2 != 0:
-            if (t_func() - init) > (minutes * 60):
+            if (time.time() - init) > (minutes * 60):
                 a.speak("Time up!")
                 print("Time up!")
+                os.startfile(r"C:\Users\Lenovo\Documents\Python Codes\piano result.mp3")
                 timer_counter += 1
 
         elif 'start stopwatch' in query:
             if stopwatch_counter % 2 == 0:
                 a.speak("Alright...Stopwatch initiated")
-                stop_init = t_func()
+                stop_init = time.time()
                 stopwatch_counter += 1
                 a.speak("Stop the stopwatch to stop it")
             else:
@@ -367,7 +404,7 @@ if __name__ == "__main__":
             if stopwatch_counter % 2 == 0:
                 a.speak("No stopwatch currently in progress..")
             else:
-                interval = t_func() - stop_init
+                interval = time.time() - stop_init
                 stopwatch_counter += 1
                 a.speak("Alright stopwatch stopped")
                 print(f"It lasted for {interval} seconds")
@@ -381,3 +418,14 @@ if __name__ == "__main__":
                 a.speak("Ok changing voice")
                 Voices.speak = male_voice
             a.speak("Hi sir! How can I help you?")
+
+        elif 'corona cases' in query:
+            r = requests.get('https://api.covid19api.com/country/india/status/confirmed/live').text
+            parser = json.loads(r)
+            l = parser[::-1]
+            today = (l[0])
+            print(f"There are {today['Cases']} confirmed corona cases in India.")
+            a.speak(f"There are {today['Cases']} confirmed corona cases in India.")
+
+        else:
+            pass
