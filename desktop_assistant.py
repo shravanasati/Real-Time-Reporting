@@ -219,18 +219,18 @@ if __name__ == "__main__":
                 a.speak(e)
 
 
-        elif 'open code' in query or 'i code in python' in query:
+        elif 'open code' in query:
             code_target = r"VS CODE PATH HERE"
             a.speak("Opening Visual Studio Code...")
             os.startfile(code_target)
 
-        elif 'open sublime' in query or 'quick code' in query:
+        elif 'open sublime' in query:
             sublime_target = r"ST3 PATH HERE"
             a.speak("Opening Sublime Text...")
             os.startfile(sublime_target)
 
-        elif 'open java ide' in query or 'i code in java' in query:
-            intellij_target = r"C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2\bin\idea64.exe"
+        elif 'open java ide' in query:
+            intellij_target = r"INTELLIJ IDEA PATH HERE"
             a.speak("Opening IntelliJ IDEA...")
             os.startfile(intellij_target)
 
