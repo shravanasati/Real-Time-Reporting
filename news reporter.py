@@ -1,26 +1,27 @@
-import json, newsapi
+import json, requests, pyttsx3
 
 def speak(str):
-	  from win32com.client import Dispatch
-	  speak=Dispatch("SAPI.SpVoice")
-	  speak.Speak(str)
-
+	engine = pyttsx3.init()
+	engine.say(str)
+	engine.runAndWait()
+	
 if __name__ == "__main__":
-	from newsapi import NewsApiClient
-	speak("How many news articles do you want to hear? ")
-	pag = int(input("How many news articles do you want to hear? "))
-
-	newsapi = NewsApiClient(api_key='YOUR NEWS API KEY')
-
-	news = newsapi.get_top_headlines(q="tech", language='en', country='in', category='technology', page_size=pag, page=pag)
-
-	a = json.dumps(news)
-
-	n = json.loads(a)
-	arts = n['articles']
+	url = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=fbddfcc479954110ba532f7b45dc41d2"
+	news = requests.get(url).text
+	news_dict = json.loads(news)
+	arts = news_dict['articles']
+	
+	a = 1
 
 	speak("Today's news highlights are...")
-	for articles in arts:
-		print(articles.get('title'))
-		speak(articles.get('title'))
-	speak("Thanks for listening!")
+	for article in arts:
+		print(article['title'])
+		speak(article['title'])
+		if a==n:
+			break
+		else:
+			speak("Moving on to the next news.")
+			a += 1
+			continue
+
+	speak("Thanks for listening...")
