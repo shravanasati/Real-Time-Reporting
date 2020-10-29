@@ -10,10 +10,6 @@ Some advanced level python projects here!
 
 5. **Typing speed counter** - A python program which can calculate the approx typing spped of a user in words per minute(WPM) and also tells the numbver of mistakes done by the user while giving this test. Find the typing_speed_phrases.txt to pick the phrases randomly and typing_speed_history.txt for history of all the typing speed tests. 
 
-6. **Spammer** - A python bot which helps you accomplish your spamming goals. Find the 'kungfu_panda.txt' above.
-
-7. **Desktop Assistant** - An ultimate desktop assistant that make your life easy by automating some silly, daily tasks. Well it's AI but without ML. NOTE: Provide URLs and application paths for the repective sites/apps to run this program. Also find the dependencies for this program below.
-
 
 
 
