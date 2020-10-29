@@ -1,12 +1,13 @@
-def speak(str):
-	from win32com.client import Dispatch
-	speak=Dispatch("SAPI.SpVoice")
-	speak.Speak(str)
+import requests, json, pyttsx3
 
-print("This is the weather forecaster!")
-import requests, json
+def speak(str):
+	engine = pyttsx3.init()
+	engine.say(str)
+	engine.runAndWait()
+
 
 if __name__ == "__main__":
+	print("This is the weather forecaster!")
 	speak("Where do you live? ")
 	place = input("Where do you live? ")
 
