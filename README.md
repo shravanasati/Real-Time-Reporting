@@ -4,32 +4,13 @@ Some advanced level python projects here!
 
 2. **Weather Monitor** - A real time weather reporter. (Again, you'll need the key from WeatherAPI.)
 
-3. **Library Manager** - A library managing system made possible with object oriented programming.
-
-4. **Bike Rental System** - A full-fledged bike rental system implemented in Python using object oriented programming.
-
-5. **Typing speed counter** - A python program which can calculate the approx typing spped of a user in words per minute(WPM) and also tells the numbver of mistakes done by the user while giving this test. Find the typing_speed_phrases.txt to pick the phrases randomly and typing_speed_history.txt for history of all the typing speed tests. 
-
-
-
 
 *Modules/Libraries Required:*
-- pyttsx3 --> ```pip install pyttsx3```
-- pyaudio --> ```pip install pyaudio```
-- wikipedia --> ```pip install wikipedia```
-- pyautogui --> ```pip install pyautogui```
-- selenium --> ```pip install selenium```
-- speech_recognition --> ```pip install speech_recognition```
-You will also need to download driver for the Firefox browser(Or any other driver for the respective browser). Download all drivers from here: https://selenium-python.readthedocs.io/installation.html
+- pyttsx3 --> ```pip install pyttsx3``` == For speaking ability of the program.
 
-If you're getting error regarding pyaudio, open the cmd and type the following code:
-```
-pip install pipwin
-```
-Once that's done, type the following code:
-```
-pipwin install pyaudio
-```
-It should work now 
- :smile:
 
+### Some Useful Links
+- NewsAPI = https://newsapi.org/
+- WeatherAPI = https://www.weatherapi.com/
+
+Get your API keys from the above websites and then you an use these programs.
