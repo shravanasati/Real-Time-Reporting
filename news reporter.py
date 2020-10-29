@@ -6,7 +6,7 @@ def speak(str):
 	engine.runAndWait()
 	
 if __name__ == "__main__":
-	url = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=fbddfcc479954110ba532f7b45dc41d2"
+	url = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=YOUR API KEY HERE"
 	news = requests.get(url).text
 	news_dict = json.loads(news)
 	arts = news_dict['articles']
