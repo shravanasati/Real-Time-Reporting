@@ -1,4 +1,5 @@
-# Way-Ahead
+# Real-Time-Reporting
+
 Real Time Reporting contains following programs:
 1. **News Reporter** - A real time news reporting python file. (You'll need an API key from NewsAPI to run this program.)
 
@@ -13,4 +14,4 @@ Real Time Reporting contains following programs:
 - NewsAPI = https://newsapi.org/
 - WeatherAPI = https://www.weatherapi.com/
 
-Get your API keys from the above websites and then you an use these programs.
+Get your API keys from the above websites, put them in the code and then you can use these programs.
